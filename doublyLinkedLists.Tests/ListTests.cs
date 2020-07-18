@@ -61,9 +61,22 @@ namespace doublyLinkedLists.Tests
         }
 
         [Theory]
-        public void ListTestAddAfter(int expectedCount, int[] values)
+        [InlineData(10, new int[] {1, 2, 3, 4, 5})]
+        public void ListTestAddNodeToFront(int expectedCount, int[] values)
         {
             var list = new DoublyLinkedList<int>();
+            foreach (var item in values)
+            {
+                list.AddNodeToFront(item);
+            }
+
+            Assert.Equal(expectedCount, list.Count);
+            if (expectedCount > 0)
+            {
+                Assert.Null(list.Head.prev);
+                Assert.Null(list.Tail.next);
+                Assert.NotNull(list.Head);
+            }
         }
 
     }
