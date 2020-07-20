@@ -60,6 +60,10 @@ namespace linkedLists
             DoublyLinkedListNode<T> current = new DoublyLinkedListNode<T>(value);
             for (int i = 0; i < Count; i++)
             {
+                if (runner.next == null)
+                {
+                    return;
+                }
                 if (runner.next == nodeAhead)
                 {
                     runner.next = current;

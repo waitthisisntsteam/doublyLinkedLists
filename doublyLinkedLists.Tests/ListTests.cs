@@ -2,6 +2,7 @@ using System;
 using Xunit;
 using doublyLinkedLists;
 using linkedLists;
+using System.Collections.Generic;
 
 namespace doublyLinkedLists.Tests
 {
@@ -36,7 +37,7 @@ namespace doublyLinkedLists.Tests
         // Theory tests for various inputs
         [Theory]
         [InlineData(0, new int[] { })]
-        [InlineData(1, new int[] { 6 })]
+        [InlineData(1, new int[] { 1 })]
         [InlineData(10, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 })]
         public void ListTestAddLast(int expectedCount, int[] values)
         {
@@ -61,7 +62,9 @@ namespace doublyLinkedLists.Tests
         }
 
         [Theory]
-        [InlineData(10, new int[] {1, 2, 3, 4, 5})]
+        [InlineData(0, new int[] { })]
+        [InlineData(1, new int[] { 1 })]
+        [InlineData(10, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 })]
         public void ListTestAddNodeToFront(int expectedCount, int[] values)
         {
             var list = new DoublyLinkedList<int>();
@@ -76,8 +79,72 @@ namespace doublyLinkedLists.Tests
                 Assert.Null(list.Head.prev);
                 Assert.Null(list.Tail.next);
                 Assert.NotNull(list.Head);
+                Assert.NotNull(list.Tail);
+                Assert.Equal(values[values.Length - 1], list.Head.data);
+                Assert.Equal(values[0], list.Tail.data);
             }
         }
 
+        [Theory]
+        [InlineData(0, new int[] { })]
+        [InlineData(1, new int[] { 1 })]
+        [InlineData(10, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 })]
+        public void ListTestAddAfter(int expectedCount, int[] values)
+        {
+            var list = new DoublyLinkedList<int>();            
+            foreach (var item in values)
+            {
+                if (list.Count > 0)
+                {
+                    list.AddAfter(list.Tail, item);
+                }
+                else
+                {
+                    list.AddNodeToFront(item);
+                }
+            }
+
+            Assert.Equal(expectedCount, list.Count);
+            if (expectedCount > 0)
+            {
+                Assert.Null(list.Head.prev);
+                Assert.Null(list.Tail.next);
+                Assert.NotNull(list.Head);
+                Assert.NotNull(list.Tail);
+                Assert.Equal(values[0], list.Head.data);
+                Assert.Equal(values[values.Length-1], list.Tail.data);
+            }
+        }
+
+        [Theory]
+        [InlineData(0, new int[] { })]
+        [InlineData(1, new int[] { 1 })]
+        [InlineData(10, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 })]
+        public void ListTestAddBefore(int expectedCount, int[] values)
+        {
+            var list = new DoublyLinkedList<int>();
+            foreach (var item in values)
+            {
+                if (list.Count > 0)
+                {
+                    list.AddBefore(list.Tail, item);
+                }
+                else
+                {
+                    list.AddNodeToFront(item);
+                }
+            }
+
+            Assert.Equal(expectedCount, list.Count);
+            if (expectedCount > 0)
+            {
+                Assert.Null(list.Head.prev);
+                Assert.Null(list.Tail.next);
+                Assert.NotNull(list.Head);
+                Assert.NotNull(list.Tail);
+                Assert.Equal(values[values.Length-1], list.Head.data);
+                Assert.Equal(values[0], list.Tail.data);
+            }
+        }
     }
 }

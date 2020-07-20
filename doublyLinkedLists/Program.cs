@@ -34,17 +34,15 @@ namespace linkedLists
 
             for (int i = 0; i < 5; i++)
             {
-                list.AddNodeToLast(i);
-
-                list.PrintList();
+                list.AddNodeToLast(i);              
             }
+            list.PrintList();
 
             for (int i = -1; i < 6; i++)
             {
                 list.Remove(i);
 
             }
-
         }
     }
 }
