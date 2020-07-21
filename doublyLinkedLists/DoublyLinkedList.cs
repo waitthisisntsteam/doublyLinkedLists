@@ -56,8 +56,17 @@ namespace linkedLists
 
         public void AddBefore(DoublyLinkedListNode<T> nodeAhead, T value)
         {
+                      
+            if (nodeAhead == Head)
+            {
+                AddNodeToFront(value);
+                return;
+            }
+
             DoublyLinkedListNode<T> runner = Head;
             DoublyLinkedListNode<T> current = new DoublyLinkedListNode<T>(value);
+
+
             for (int i = 0; i < Count; i++)
             {
                 if (runner.next == null)

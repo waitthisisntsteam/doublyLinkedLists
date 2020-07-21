@@ -3,6 +3,7 @@ using Xunit;
 using doublyLinkedLists;
 using linkedLists;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace doublyLinkedLists.Tests
 {
@@ -142,8 +143,96 @@ namespace doublyLinkedLists.Tests
                 Assert.Null(list.Tail.next);
                 Assert.NotNull(list.Head);
                 Assert.NotNull(list.Tail);
-                Assert.Equal(values[values.Length-1], list.Head.data);
+                if (values.Length > 1)
+                {
+                    Assert.Equal(values[1], list.Head.data);
+                }
                 Assert.Equal(values[0], list.Tail.data);
+            }
+        }
+
+        [Theory]
+        [InlineData(0, new int[] { })]
+        [InlineData(1, new int[] { 1})]
+        [InlineData(10, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9})]
+        public void ListTestRemoveLast(int expectedCount, int[] values)
+        {
+            var list = new DoublyLinkedList<int>();
+            foreach (var item in values)
+            {
+                list.AddNodeToLast(item);
+            }          
+
+            Assert.Equal(expectedCount, list.Count);
+            if (expectedCount > 0)
+            {
+                Assert.Null(list.Head.prev);
+                Assert.Null(list.Tail.next);
+                Assert.NotNull(list.Head);
+                Assert.NotNull(list.Tail);
+                Assert.Equal(values[0], list.Head.data);
+                if (values.Length > 1)
+                {
+                    list.RemoveLast();
+                    Assert.Equal(values[values.Length - 2], list.Tail.data);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData(0, new int[] { })]
+        [InlineData(1, new int[1] { 1})]
+        [InlineData(10, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9})]
+        public void ListTestRemoveFirst (int expectedCount, int[] values)
+        {
+            var list = new DoublyLinkedList<int>();
+            foreach (var item in values)
+            {
+                list.AddNodeToLast(item);
+            }
+
+            Assert.Equal(expectedCount, list.Count);
+            if (expectedCount > 0)
+            {
+                Assert.Null(list.Head.prev);
+                Assert.Null(list.Tail.next);
+                Assert.NotNull(list.Head);
+                Assert.NotNull(list.Tail);
+                if (values.Length > 1)
+                {
+                    list.RemoveFirst();
+                    Assert.Equal(values[1], list.Head.data);
+                }               
+                Assert.Equal(values[values.Length - 1], list.Tail.data);
+            }
+        }
+
+        [Theory]
+        [InlineData(0, new int[] { })]
+        [InlineData(1, new int[1] { 1})]
+        [InlineData(10, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9})]
+        public void ListTestRemove (int expectedCount, int[] values)
+        {
+            var list = new DoublyLinkedList<int>();
+            foreach (var item in values)
+            {
+                list.AddNodeToLast(item);
+            }
+
+            Assert.Equal(expectedCount, list.Count);
+            if (expectedCount > 0)
+            {
+                Assert.Null(list.Head.prev);
+                Assert.Null(list.Tail.next);
+                Assert.NotNull(list.Head);
+                Assert.NotNull(list.Tail);
+                if (values.Length > 1)
+                {
+                    list.Remove(1);
+                    Assert.Equal(values[2], list.Head.next.data);
+                }
+                Assert.Equal(values[0], list.Head.data);
+                Assert.Equal(values[values.Length - 1], list.Tail.data);
             }
         }
     }

@@ -14,6 +14,13 @@ namespace linkedLists
     public class Program
     {
 
+        /*make it so:
+            head.prev = tail
+            tail.next = head
+            make sure all functions dont interact with head.prev and tail.prev 
+            and if we do make it so head.prev.prev = tail/tail.next.next = head
+        */
+
         static void Main(string[] args)
         {
             DoublyLinkedList<int> list = new DoublyLinkedList<int>();
