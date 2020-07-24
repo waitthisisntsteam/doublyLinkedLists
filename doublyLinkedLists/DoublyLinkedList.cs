@@ -28,13 +28,18 @@ namespace linkedLists
             {
                 Head = new DoublyLinkedListNode<T>(value);
                 Tail = Head;
+                Head.prev = Tail;
+                Tail.next = Head;
             }
             else
             {
                 DoublyLinkedListNode<T> current = new DoublyLinkedListNode<T>(value);
+                Head.prev = null;
                 Head.prev = current;
                 current.next = Head;
                 Head = current;
+                Head.prev = Tail;
+                Tail.next = Head;
             }
             Count++;
         }
@@ -47,9 +52,12 @@ namespace linkedLists
             else
             {
                 DoublyLinkedListNode<T> current = new DoublyLinkedListNode<T>(value);
+                Tail.next = null;
                 Tail.next = current;
                 current.prev = Tail;
                 Tail = current;
+                Tail.next = Head;
+                Head.prev = Tail;
                 Count++;
             }
         }
@@ -82,7 +90,9 @@ namespace linkedLists
             }
             if (nodeAhead.next == null)
             {
+                Tail.next = null;                
                 Tail = nodeAhead;
+                Tail.next = Head;
             }
             Count++;
         }
@@ -100,8 +110,10 @@ namespace linkedLists
                 nodeBehind.next = current;
                 current.prev = nodeBehind;
                 if (current.next == null)
-                {
+                {                   
                     Tail = current;
+                    Tail.next = null;
+                    Tail.next = Head;
                 }
             }
             Count++;
@@ -113,7 +125,7 @@ namespace linkedLists
 
             while (current != null)
             {
-                if (current.data.Equals(val))
+                if (current.data.Equals(val) && !val.Equals(Head.prev) && !val.Equals(Tail.next))
                 {
                     break;
                 }
@@ -138,8 +150,10 @@ namespace linkedLists
                 }
                 else
                 {
+                    Head.prev = null;
                     Head = Head.next;
                     Head.prev = null;
+                    Head.prev = Tail;
                     Count--;
                     return true;
                 }
@@ -160,8 +174,10 @@ namespace linkedLists
                 }
                 else
                 {
+                    Tail.next = null;
                     Tail = Tail.prev;
                     Tail.next = null;
+                    Tail.next = Head;
                 }
                 Count--;
                 return true;
@@ -196,9 +212,9 @@ namespace linkedLists
         }
 
         public void Clear()
-        {
+        {       
             Head = null;
-            Tail = null;
+            Tail = null;           
             Count = 0;
         }
 
@@ -206,7 +222,7 @@ namespace linkedLists
         {
             Console.WriteLine("-------------------------");
             DoublyLinkedListNode<T> runner = Head;
-            while (runner != null)
+            while (runner != Tail.next)
             {
                 Console.WriteLine(runner.data);
                 runner = runner.next;

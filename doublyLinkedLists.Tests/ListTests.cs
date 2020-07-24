@@ -52,8 +52,8 @@ namespace doublyLinkedLists.Tests
             Assert.Equal(expectedCount, list.Count);
             if (expectedCount > 0)
             {
-                Assert.Null(list.Head.prev);
-                Assert.Null(list.Tail.next);
+                Assert.Equal(list.Head.prev, list.Tail);
+                Assert.Equal(list.Tail.next, list.Head);
                 Assert.NotNull(list.Head);
                 Assert.NotNull(list.Tail);
                 Assert.Equal(values[0], list.Head.data);
@@ -77,8 +77,8 @@ namespace doublyLinkedLists.Tests
             Assert.Equal(expectedCount, list.Count);
             if (expectedCount > 0)
             {
-                Assert.Null(list.Head.prev);
-                Assert.Null(list.Tail.next);
+                Assert.Equal(list.Head.prev, list.Tail);
+                Assert.Equal(list.Tail.next, list.Head);
                 Assert.NotNull(list.Head);
                 Assert.NotNull(list.Tail);
                 Assert.Equal(values[values.Length - 1], list.Head.data);
@@ -97,7 +97,7 @@ namespace doublyLinkedLists.Tests
             {
                 if (list.Count > 0)
                 {
-                    list.AddAfter(list.Tail, item);
+                    list.AddAfter(list.Head, item);
                 }
                 else
                 {
@@ -108,8 +108,8 @@ namespace doublyLinkedLists.Tests
             Assert.Equal(expectedCount, list.Count);
             if (expectedCount > 0)
             {
-                Assert.Null(list.Head.prev);
-                Assert.Null(list.Tail.next);
+                Assert.Equal(list.Head.prev, list.Tail);
+                Assert.Equal(list.Tail.next, list.Head);
                 Assert.NotNull(list.Head);
                 Assert.NotNull(list.Tail);
                 Assert.Equal(values[0], list.Head.data);
@@ -139,8 +139,8 @@ namespace doublyLinkedLists.Tests
             Assert.Equal(expectedCount, list.Count);
             if (expectedCount > 0)
             {
-                Assert.Null(list.Head.prev);
-                Assert.Null(list.Tail.next);
+                Assert.Equal(list.Head.prev, list.Tail);
+                Assert.Equal(list.Tail.next, list.Head);
                 Assert.NotNull(list.Head);
                 Assert.NotNull(list.Tail);
                 if (values.Length > 1)
@@ -166,8 +166,8 @@ namespace doublyLinkedLists.Tests
             Assert.Equal(expectedCount, list.Count);
             if (expectedCount > 0)
             {
-                Assert.Null(list.Head.prev);
-                Assert.Null(list.Tail.next);
+                Assert.Equal(list.Head.prev, list.Tail);
+                Assert.Equal(list.Tail.next, list.Head);
                 Assert.NotNull(list.Head);
                 Assert.NotNull(list.Tail);
                 Assert.Equal(values[0], list.Head.data);
@@ -194,8 +194,8 @@ namespace doublyLinkedLists.Tests
             Assert.Equal(expectedCount, list.Count);
             if (expectedCount > 0)
             {
-                Assert.Null(list.Head.prev);
-                Assert.Null(list.Tail.next);
+                Assert.Equal(list.Head.prev, list.Tail);
+                Assert.Equal(list.Tail.next, list.Head);
                 Assert.NotNull(list.Head);
                 Assert.NotNull(list.Tail);
                 if (values.Length > 1)
@@ -222,8 +222,8 @@ namespace doublyLinkedLists.Tests
             Assert.Equal(expectedCount, list.Count);
             if (expectedCount > 0)
             {
-                Assert.Null(list.Head.prev);
-                Assert.Null(list.Tail.next);
+                Assert.Equal(list.Head.prev, list.Tail);
+                Assert.Equal(list.Tail.next, list.Head);
                 Assert.NotNull(list.Head);
                 Assert.NotNull(list.Tail);
                 if (values.Length > 1)
