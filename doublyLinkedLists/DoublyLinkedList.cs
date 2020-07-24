@@ -106,6 +106,11 @@ namespace linkedLists
             }
             else
             {
+                if (nodeBehind == Tail)
+                {
+                    AddNodeToLast(value);
+                    return;
+                }
                 current.next = nodeBehind.next;
                 nodeBehind.next = current;
                 current.prev = nodeBehind;
@@ -220,12 +225,14 @@ namespace linkedLists
 
         public void PrintList()
         {
+            int i = 0;
             Console.WriteLine("-------------------------");
             DoublyLinkedListNode<T> runner = Head;
-            while (runner != Tail.next)
+            while (i < Count)
             {
                 Console.WriteLine(runner.data);
                 runner = runner.next;
+                i++;
             }
             Console.WriteLine("-------------------------");
 

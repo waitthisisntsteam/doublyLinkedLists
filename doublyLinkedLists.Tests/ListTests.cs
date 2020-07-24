@@ -97,7 +97,7 @@ namespace doublyLinkedLists.Tests
             {
                 if (list.Count > 0)
                 {
-                    list.AddAfter(list.Head, item);
+                    list.AddAfter(list.Tail, item);
                 }
                 else
                 {

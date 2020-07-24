@@ -14,42 +14,21 @@ namespace linkedLists
     public class Program
     {
 
-        /*make it so:
-            head.prev = tail
-            tail.next = head
-            make sure all functions dont interact with head.prev and tail.prev 
-            and if we do make it so head.prev.prev = tail/tail.next.next = head
-        */
-
         static void Main(string[] args)
         {
             DoublyLinkedList<int> list = new DoublyLinkedList<int>();
-            //linkedList.AddNodeToFront(1);
-            //linkedList.AddNodeToLast(2);
-            //linkedList.AddNodeToLast(5);
-            //linkedList.AddBefore(linkedList.Tail, 4);
-            //linkedList.AddAfter(linkedList.Head.next, 3);
-            //linkedList.AddNodeToFront(0);
-            //linkedList.RemoveFirst();
-            //linkedList.AddNodeToLast(6);
-            //linkedList.RemoveLast();
-            //linkedList.AddAfter(linkedList.Head.next.next, 7);
-            //linkedList.Remove(7);
-            //linkedList.PrintList();
-
-            Console.WriteLine(list);
-
-            for (int i = 0; i < 5; i++)
-            {
-                list.AddNodeToLast(i);              
-            }
+            list.AddNodeToFront(1);
+            list.AddNodeToLast(2);
+            list.AddNodeToLast(5);
+            list.AddBefore(list.Tail, 4);
+            list.AddAfter(list.Head.next, 3);
+            list.AddNodeToFront(0);
+            list.RemoveFirst();
+            list.AddNodeToLast(6);
+            list.RemoveLast();
+            list.AddAfter(list.Head.next.next, 7);
+            list.Remove(7);
             list.PrintList();
-
-            for (int i = -1; i < 6; i++)
-            {
-                list.Remove(i);
-
-            }
         }
     }
 }
